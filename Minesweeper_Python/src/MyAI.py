@@ -1,4 +1,5 @@
 
+from numpy.core.numeric import isclose
 from AI import AI
 from Action import Action
 
@@ -26,7 +27,12 @@ class Board():
 
 	#count the number of uncover/cover/flag of the board
     def reportBoard(self):
-	    return defaultdict(int, zip(*np.unique(self.board,return_counts=True)))
+	    #return defaultdict(int, zip(*np.unique(self.board,return_counts=True)))
+        adict = defaultdict(int)
+        for i in self.board:
+            for j in i:
+                adict[j]+=1
+        return adict
 
     #Update the board at the position
     def update_board(self,x,y,value):
